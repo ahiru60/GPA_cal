@@ -199,16 +199,39 @@ function exportTableToExcel() {
 
     i++;
         var table = document.getElementById("subTable");
+
         var row = table.insertRow(i);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
 
-        cell1.innerHTML = "G.P.A";
+        cell1.innerHTML = "Total Credits";
         cell2.innerHTML = "-";
         cell3.innerHTML = "-";
-        cell4.innerHTML = gpa;
+        cell4.innerHTML = totalCred;
+
+        var row1 = table.insertRow(i+1);
+        var cell11 = row1.insertCell(0);
+        var cell12 = row1.insertCell(1);
+        var cell13 = row1.insertCell(2);
+        var cell14 = row1.insertCell(3);
+
+        cell11.innerHTML = "";
+        cell12.innerHTML = "";
+        cell13.innerHTML = "";
+        cell14.innerHTML = "";
+
+        var row2 = table.insertRow(i+2);
+        var cell21 = row2.insertCell(0);
+        var cell22 = row2.insertCell(1);
+        var cell23 = row2.insertCell(2);
+        var cell24 = row2.insertCell(3);
+
+        cell21.innerHTML = "Your GPA is :";
+        cell22.innerHTML = "";
+        cell23.innerHTML = "";
+        cell24.innerHTML = gpa;
 
     var tab_text="<table border='1px'><tr bgcolor='#87AFC6'>";
     var textRange; var j=0;

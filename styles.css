@@ -110,6 +110,7 @@ body {
   #inter-bottom button:active {
     background-color: #7a90c4;
     transform: translateY(2px);
+    
   }
   
   #gpa {
