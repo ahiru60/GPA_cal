@@ -12,28 +12,30 @@
         
         
         <div id="inter">
-            <div id="h1"><h1>GPA Cal</h1></div><br><hr class="solid"><br>
+            <div id="h1"><h1>GPA Calculator</h1></div><br><hr class="solid">
+            <p id="up"></p>
         <div id="inter-inputs">
+            
             Subject: <select name="cradit" id="credit">
-                <option value="3">IT and Computing Fundamentals IT11013</option>
-                <option value="3">Programming Fundamentals IT11023</option>
-                <option value="3">Discrete Mathematics IT11033</option>
-                <option value="1">Psychology IT11041</option>
-                <option value="2">Leadership and Communication Skills IT11052</option>
-                <option value="3">Entreprenureship and Growing Business BMG11073</option>
-                <option value="2">Computer Organization & Architecture IT12012</option>
-                <option value="3">Information Management IT12023</option>
-                <option value="3">Data Structure and Algorithems I IT12063</option>
-                <option value="3">Integrative Programming & Technologies IT12043</option>
-                <option value="2">Emerging Technologies IT12052</option>
-                <option value="1">Seminar I IT12031</option>
-                <option value="3">Object Oriented Programming IT21053</option>
-                <option value="2">Social and Professional Issues IT21012</option>
-                <option value="2">Data Communication IT21022</option>
-                <option value="2">Software Design and Implementation IT21032</option>
-                <option value="3">Software Construction Technologies IT21043</option>
-                <option value="3">Data Structure and Algorithems II IT21063</option>
-                <option value="2">System Analysis and Design IT21072</option>
+                <option value="3">IT11013 : IT and Computing Fundamentals</option>
+                <option value="3">IT11023 : Programming Fundamentals</option>
+                <option value="3">IT11033 : Discrete Mathematics</option>
+                <option value="1">IT11041 : Psychology</option>
+                <option value="2">IT11052 : Leadership and Communication Skills</option>
+                <option value="3">BMG11073 : Entreprenureship and Growing Business</option>
+                <option value="2">IT12012 : Computer Organization & Architecture</option>
+                <option value="3">IT12023 : Information Management</option>
+                <option value="3">IT12063 : Data Structure and Algorithems I</option>
+                <option value="3">IT12043 : Integrative Programming & Technologies</option>
+                <option value="2">IT12052 : Emerging Technologies</option>
+                <option value="1">IT12031 : Seminar I</option>
+                <option value="3">IT21053 : Object Oriented Programming</option>
+                <option value="2">IT21012 : Social and Professional Issues</option>
+                <option value="2">IT21022 : Data Communication</option>
+                <option value="2">IT21032 : Software Design and Implementation</option>
+                <option value="3">IT21043 : Software Construction Technologies</option>
+                <option value="3">IT21063 : Data Structure and Algorithems II</option>
+                <option value="2">IT21072 : System Analysis and Design</option>
 
         </select>
         
@@ -65,10 +67,13 @@
 
         
         <div id="inter-bottom">
+            <div><p id="gpa"></p></div>
         <button onclick="removeRow()">Remove</button>
         <button onclick="calc()">Calculate GPA</button>
         <button onclick="reset()">Reset</button>
-        <div><p id="gpa"></p></div>
+        <button onclick="fnExcelReport()">Print</button>
+        
+        
     </div>
 
     </body>
@@ -77,41 +82,53 @@
 
 <script>
     i=0;
-    j=1;
+    j=0;
+    k=0;
+    gpa = 0;
     var table = document.getElementById("subTable");
     var row = table.insertRow(i);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
   var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
 
   cell1.innerHTML = "Subject";
   cell2.innerHTML = "Credit";
   cell3.innerHTML = "Grade";
+  cell4.innerHTML = "Grade Score";
 
     subSum = 0;
     totalCred = 0;
 function sum(){
 subject = document.getElementById("credit").options[document.getElementById("credit").selectedIndex].text;
 credit = parseInt(document.getElementById("credit").value);
-grade = document.getElementById("grade").value;
-subSum += credit*grade;
+grade = document.getElementById("grade").options[document.getElementById("grade").selectedIndex].text;
+gradeScore = document.getElementById("grade").value;
+subSum += credit*gradeScore;
 totalCred = totalCred+credit;
-alert(subSum+" "+totalCred)
+//document.getElementById("up").innerText = subSum+" "+totalCred;
 
 i++;
   var row = table.insertRow(i);
   var cell1 = row.insertCell(0);
   var cell2 = row.insertCell(1);
   var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
+
   cell1.innerHTML = subject;
   cell2.innerHTML = credit;
   cell3.innerHTML = grade;
-
+  cell4.innerHTML = gradeScore;
+  j++;
   document.getElementById("credit").selectedIndex = j;
-    j++;
+  
+    
 }
 function calc(){
-    document.getElementById("gpa").innerHTML = subSum/totalCred;
+    gpa = subSum/totalCred;
+    document.getElementById("gpa").innerHTML = "Your G.P.A is : "+gpa.toFixed(2);
+
+    
 }
 
 function removeRow(){
@@ -119,12 +136,108 @@ function removeRow(){
     if(i>0){
         removeVal = table.rows[i].cells[1].innerHTML*table.rows[i].cells[2].innerHTML;
     subSum = subSum-removeVal;
-
+    totalCred = totalCred - parseInt(table.rows[i].cells[1].innerHTML);
     table.deleteRow(i);
     i--;
+    j--;
+    
+    if(k<1){
+        j--;
     }
+    k++;
+    document.getElementById("credit").selectedIndex = j;
+    
+    }
+    //document.getElementById("up").innerText = subSum+" "+totalCred;
 }
 function reset(){
     window.location.reload();
+}
+
+function exportTableToExcel() {
+
+
+        
+
+        /*var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById("subTable");
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+        // Specify file name
+        filename = "G.P.A" + '.xls';
+
+        // Create download link element
+        downloadLink = document.createElement("a");
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+            // Setting the file name
+            downloadLink.download = filename;
+
+            //triggering the function
+            downloadLink.click();
+        }*/
+        
+
+        
+    }
+
+    function fnExcelReport()
+{
+
+    i++;
+        var table = document.getElementById("subTable");
+        var row = table.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        cell1.innerHTML = "G.P.A";
+        cell2.innerHTML = "-";
+        cell3.innerHTML = "-";
+        cell4.innerHTML = gpa;
+
+    var tab_text="<table border='1px'><tr bgcolor='#87AFC6'>";
+    var textRange; var j=0;
+    tab = document.getElementById('subTable'); // id of table
+
+    for(j = 0 ; j < tab.rows.length ; j++) 
+    {     
+        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+        //tab_text=tab_text+"</tr>";
+    }
+
+    tab_text=tab_text+"</table>";
+    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE "); 
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    {
+        txtArea1.document.open("txt/html","replace");
+        txtArea1.document.write(tab_text);
+        txtArea1.document.close();
+        txtArea1.focus(); 
+        sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+    }  
+    else                 //other browser not tested on IE 11
+        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
+
+        table.deleteRow(i);
+        i--;
+    return (sa);
 }
 </script>
