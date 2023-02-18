@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #e7ebf4;
+  }
+  
+  h1 {
+    font-size: 66px;
+    margin: 0;
+  }
+  
+  #h1 {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  #inter {
+    margin: 20px 0;
+    margin-top: 0px;
+    padding: 20px;
+    padding-top: 1px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  
+  
+  #inter select {
+    font-size: 16px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  #inter button {
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    background-color: #576c9e;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  #inter button:hover {
+    background-color: #3e5a9c;
+  }
+  
+  #inter button:active {
+    background-color: #7a90c4;
+    transform: translateY(2px);
+  }
+  
+  #table-space {
+    margin: 20px 0;
+    height: 300px;
+    overflow: hidden;
+    overflow-y:scroll;
+
+  }
+  
+  #subTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #subTable th,
+  #subTable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid rgb(203, 215, 243);
+  }
+  
+
+  #subTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  #headTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  #inter-bottom {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  #inter-bottom button {
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    background-color: #576c9e;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  #inter-bottom button:hover {
+    background-color: #3e5a9c;
+  }
+  
+  #inter-bottom button:active {
+    background-color: #7a90c4;
+    transform: translateY(2px);
+  }
+  
+  #gpa {
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  #inter-inputs{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  

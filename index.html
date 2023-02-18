@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>GPA calculator</title>
+        <link href="styles.css" rel="stylesheet">
+
+    </head>
+    <body>
+
+        
+        
+        
+        <div id="inter">
+            <div id="h1"><h1>GPA Cal</h1></div><br><hr class="solid"><br>
+        <div id="inter-inputs">
+            Subject: <select name="cradit" id="credit">
+                <option value="3">IT and Computing Fundamentals IT11013</option>
+                <option value="3">Programming Fundamentals IT11023</option>
+                <option value="3">Discrete Mathematics IT11033</option>
+                <option value="1">Psychology IT11041</option>
+                <option value="2">Leadership and Communication Skills IT11052</option>
+                <option value="3">Entreprenureship and Growing Business BMG11073</option>
+                <option value="2">Computer Organization & Architecture IT12012</option>
+                <option value="3">Information Management IT12023</option>
+                <option value="3">Data Structure and Algorithems I IT12063</option>
+                <option value="3">Integrative Programming & Technologies IT12043</option>
+                <option value="2">Emerging Technologies IT12052</option>
+                <option value="1">Seminar I IT12031</option>
+                <option value="3">Object Oriented Programming IT21053</option>
+                <option value="2">Social and Professional Issues IT21012</option>
+                <option value="2">Data Communication IT21022</option>
+                <option value="2">Software Design and Implementation IT21032</option>
+                <option value="3">Software Construction Technologies IT21043</option>
+                <option value="3">Data Structure and Algorithems II IT21063</option>
+                <option value="3">Object Oriented Programming IT21053</option>
+                <option value="2">System Analysis and Design IT21072</option>
+
+        </select>
+        
+            Grade: <select name="grade" id="grade">
+                <option value="4">A+</option>
+                <option value="4">A</option>
+                <option value="3.7">A-</option>
+                <option value="3.3">B+</option>
+                <option value="3">B</option>
+                <option value="2.7">B-</option>
+                <option value="2.3">C+</option>
+                <option value="2">C</option>
+                <option value="1.7">C-</option>
+                <option value="1.3">D+</option>
+                <option value="1">D</option>
+                <option value="0">F</option>
+        </select>
+
+        <button onclick="sum()">Add</button>
+    </div> 
+    </div>
+    
+        <div id="table-space">
+            <table id="subTable">
+            
+            </table>
+        </div>
+          <br>
+
+        
+        <div id="inter-bottom">
+        <button onclick="removeRow()">Remove</button>
+        <button onclick="calc()">Calculate GPA</button>
+        <button onclick="reset()">Reset</button>
+        <div><p id="gpa"></p></div>
+    </div>
+
+    </body>
+
+</html>
+
+<script>
+    i=0;
+    j=1;
+    var table = document.getElementById("subTable");
+    var row = table.insertRow(i);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+
+  cell1.innerHTML = "Subject";
+  cell2.innerHTML = "Credit";
+  cell3.innerHTML = "Grade";
+
+    subSum = 0;
+    totalCred = 0;
+function sum(){
+subject = document.getElementById("credit").options[document.getElementById("credit").selectedIndex].text;
+credit = document.getElementById("credit").value;
+grade = document.getElementById("grade").value;
+subSum += credit*grade;
+totalCred += credit;
+
+i++;
+  var row = table.insertRow(i);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  cell1.innerHTML = subject;
+  cell2.innerHTML = credit;
+  cell3.innerHTML = grade;
+
+  document.getElementById("credit").selectedIndex = j;
+    j++;
+}
+function calc(){
+    document.getElementById("gpa").innerHTML = subSum/totalCred;
+}
+
+function removeRow(){
+    
+    if(i>0){
+        removeVal = table.rows[i].cells[1].innerHTML*table.rows[i].cells[2].innerHTML;
+    subSum = subSum-removeVal;
+
+    table.deleteRow(i);
+    i--;
+    }
+}
+function reset(){
+    window.location.reload();
+}
+</script>
