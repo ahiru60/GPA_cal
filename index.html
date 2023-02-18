@@ -33,7 +33,6 @@
                 <option value="2">Software Design and Implementation IT21032</option>
                 <option value="3">Software Construction Technologies IT21043</option>
                 <option value="3">Data Structure and Algorithems II IT21063</option>
-                <option value="3">Object Oriented Programming IT21053</option>
                 <option value="2">System Analysis and Design IT21072</option>
 
         </select>
@@ -93,10 +92,11 @@
     totalCred = 0;
 function sum(){
 subject = document.getElementById("credit").options[document.getElementById("credit").selectedIndex].text;
-credit = document.getElementById("credit").value;
+credit = parseInt(document.getElementById("credit").value);
 grade = document.getElementById("grade").value;
 subSum += credit*grade;
-totalCred += credit;
+totalCred = totalCred+credit;
+alert(subSum+" "+totalCred)
 
 i++;
   var row = table.insertRow(i);
