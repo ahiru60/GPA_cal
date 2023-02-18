@@ -71,7 +71,7 @@
         <button onclick="removeRow()">Remove</button>
         <button onclick="calc()">Calculate GPA</button>
         <button onclick="reset()">Reset</button>
-        <button onclick="fnExcelReport()">Print</button>
+        <button onclick="fnExcelReport()" id="print">Print</button>
         
         
     </div>
@@ -81,6 +81,8 @@
 </html>
 
 <script>
+    document.getElementById("print").disabled = true;
+    document.getElementById("print").style.backgroundColor = "#747577";
     i=0;
     j=0;
     k=0;
@@ -127,7 +129,8 @@ i++;
 function calc(){
     gpa = subSum/totalCred;
     document.getElementById("gpa").innerHTML = "Your G.P.A is : "+gpa.toFixed(2);
-
+    document.getElementById("print").disabled = false;
+    document.getElementById("print").style.backgroundColor = "#576c9e";
     
 }
 
